@@ -102,6 +102,7 @@ const ResultScreen = props => {
                 }}>
                 <Text style={styles.flightFont}>{item.aircraft}</Text>
                 <FontAwesome5
+                  style={{opacity: 0.4}}
                   name="plane"
                   size={14}
                   color={colors.blackRussian}
