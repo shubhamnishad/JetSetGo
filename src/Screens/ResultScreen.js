@@ -78,6 +78,10 @@ const ResultScreen = props => {
     setSearch(searchText);
   }, []);
 
+  const toggleSort = () => {
+    setSort(!sort);
+  };
+
   const renderItem = ({item, index}) => {
     const time1 = new Date(item.departureTime);
     const time2 = new Date(item.arrivalTime);
@@ -153,7 +157,7 @@ const ResultScreen = props => {
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
           <Icon name="arrow-back-ios" size={28} color={colors.blackRussian} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setSort(true)}>
+        <TouchableOpacity onPress={toggleSort}>
           <Icon name="filter-list-alt" size={28} color={colors.blackRussian} />
         </TouchableOpacity>
       </View>
@@ -186,7 +190,7 @@ const ResultScreen = props => {
       <CustomBottomSheet visible={sort}>
         <TouchableOpacity
           style={{alignSelf: 'center', marginVertical: 15}}
-          onPress={() => setSort(false)}>
+          onPress={toggleSort}>
           <AntDesignIcon
             name="closecircleo"
             size={30}
@@ -194,7 +198,7 @@ const ResultScreen = props => {
           />
         </TouchableOpacity>
 
-        <CustomCard>
+        <CustomCard style={{borderBottomRightRadius: 0}}>
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <Text style={styles.sortByFont}>Sort by</Text>
           </View>
