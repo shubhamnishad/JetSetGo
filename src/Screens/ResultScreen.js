@@ -12,6 +12,7 @@ import {
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import CustomBottomSheet from '../Components/CustomBottomSheet';
 import CustomCard from '../Components/CustomCard';
@@ -72,7 +73,7 @@ const ResultScreen = props => {
     }, 2000);
 
     return () => clearTimeout(timeout);
-  }, [sort]);
+  }, []);
 
   const onSearch = useCallback(searchText => {
     setSearch(searchText);
@@ -94,7 +95,18 @@ const ResultScreen = props => {
           <View style={styles.flightHeader}>
             <View style={styles.flightName}>
               <Text style={styles.airlineFont}>{item.airline}</Text>
-              <Text style={styles.flightFont}>{item.aircraft}</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}>
+                <Text style={styles.flightFont}>{item.aircraft}</Text>
+                <FontAwesome5
+                  name="plane"
+                  size={14}
+                  color={colors.blackRussian}
+                />
+              </View>
             </View>
             <View style={styles.flightPrice}>
               <Text style={styles.priceFont}>
@@ -109,10 +121,20 @@ const ResultScreen = props => {
               <View>
                 <Text style={{color: colors.darkseagreen}}>{item.origin}</Text>
               </View>
-              <View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
                 <Text style={styles.departArriveTime}>
                   {formattedDateOrigin}
                 </Text>
+                <FontAwesome5
+                  name="plane-departure"
+                  size={10}
+                  color={colors.darkseagreen}
+                />
               </View>
             </View>
 
@@ -129,10 +151,20 @@ const ResultScreen = props => {
                   {item.destination}
                 </Text>
               </View>
-              <View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
                 <Text style={styles.departArriveTime}>
                   {formattedDateArrival}
                 </Text>
+                <FontAwesome5
+                  name="plane-arrival"
+                  size={10}
+                  color={colors.darksalmon}
+                />
               </View>
             </View>
           </View>
@@ -290,9 +322,11 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   flightFont: {
-    fontSize: 14,
-    opacity: 0.6,
+    fontSize: 12,
+    opacity: 0.4,
     color: colors.black,
+    marginRight: 7,
+    paddingLeft: 2,
   },
   priceFont: {
     fontWeight: '800',
@@ -376,7 +410,8 @@ const styles = StyleSheet.create({
   departArriveTime: {
     color: colors.black,
     opacity: 0.4,
-    fontSize: 13,
+    fontSize: 12,
+    paddingRight: 2,
   },
   duration: {
     width: 50,
